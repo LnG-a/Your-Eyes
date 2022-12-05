@@ -6,6 +6,7 @@ import 'pages/main_page.dart';
 final shape = RoundedRectangleBorder(
   borderRadius: BorderRadius.circular(20),
 );
+const mainColor = Color(0xff7f3dff);
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
