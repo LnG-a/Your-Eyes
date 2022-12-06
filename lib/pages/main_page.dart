@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:your_eyes/pages/community_page.dart';
 import 'package:your_eyes/pages/home_page.dart';
-import 'package:your_eyes/pages/settings_page.dart';
+import 'package:your_eyes/pages/setting/setting_info.dart';
+import 'package:your_eyes/pages/setting/settings_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});

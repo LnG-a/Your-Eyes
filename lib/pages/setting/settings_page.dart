@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:your_eyes/main.dart';
+import 'package:your_eyes/pages/location/location.dart';
+import 'package:your_eyes/pages/setting/setting_info.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -21,8 +23,12 @@ class _SettingsPageState extends State<SettingsPage> {
           const TitleSession(
             title: 'Hồ sơ cá nhân',
           ),
-          ButtonElement(text: "Thông tin cá nhân", onPressed: () {}),
-          ButtonElement(text: "Đổi mật khẩu", onPressed: () {}),
+          ButtonElement(text: "Thông tin cá nhân", onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => SettingInfo()));
+          }),
+          ButtonElement(text: "Đổi mật khẩu", onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeScreen()));
+          }),
           ButtonElement(text: "Thay đổi email", onPressed: () {}),
           ButtonElement(text: "Thông báo", onPressed: () {}),
           ButtonElement(text: "Thông báo qua email", onPressed: () {}),
@@ -40,7 +46,7 @@ class _SettingsPageState extends State<SettingsPage> {
           ButtonElement(text: "Twitter", onPressed: () {}),
           ButtonElement(text: "Youtube", onPressed: () {}),
           ButtonElement(text: "Instagram", onPressed: () {}),
-          ElevatedButton(onPressed: () {}, child: Text("Đăng xuất", style: const TextStyle(color: Colors.white, fontSize: 16),))
+          ElevatedButton(onPressed: () {}, child: Text("Đăng xuất", style: const TextStyle(color: Colors.white, fontSize: 18),))
         ],
       ),
     );
@@ -63,7 +69,7 @@ class ButtonElement extends StatelessWidget {
         ),
         onPressed: onPressed,
         child: Text(text,
-            style: const TextStyle(color: Colors.black, fontSize: 16)));
+            style: const TextStyle(color: Colors.black, fontSize: 18)));
   }
 }
 
