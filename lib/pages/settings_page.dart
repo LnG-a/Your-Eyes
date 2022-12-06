@@ -40,7 +40,7 @@ class _SettingsPageState extends State<SettingsPage> {
           ButtonElement(text: "Twitter", onPressed: () {}),
           ButtonElement(text: "Youtube", onPressed: () {}),
           ButtonElement(text: "Instagram", onPressed: () {}),
-          ElevatedButton(onPressed: () {}, child: Text("Đăng xuất"))
+          ElevatedButton(onPressed: () {}, child: Text("Đăng xuất", style: const TextStyle(color: Colors.white, fontSize: 16),))
         ],
       ),
     );
@@ -59,11 +59,11 @@ class ButtonElement extends StatelessWidget {
     return TextButton(
         style: TextButton.styleFrom(
           alignment: Alignment.centerLeft,
-          padding: EdgeInsets.zero,
+          padding: EdgeInsets.all(0),
         ),
         onPressed: onPressed,
         child: Text(text,
-            style: const TextStyle(color: Colors.black, fontSize: 14)));
+            style: const TextStyle(color: Colors.black, fontSize: 16)));
   }
 }
 
@@ -77,7 +77,7 @@ class TitleSession extends StatelessWidget {
     return Text(
       title,
       style: const TextStyle(
-          color: mainColor, fontWeight: FontWeight.bold, fontSize: 14),
+          color: mainColor, fontSize: 20),
     );
   }
 }
