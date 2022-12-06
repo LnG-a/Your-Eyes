@@ -20,7 +20,7 @@ class _MainPageState extends State<MainPage> {
     ),
     const BottomNavigationBarItem(
         icon: Icon(Icons.favorite,size: 30),
-        label: "Commmunity",
+        label: "Community",
     ),
     const BottomNavigationBarItem(
         icon: Icon(Icons.settings,size: 30),
