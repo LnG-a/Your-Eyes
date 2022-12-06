@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:your_eyes/HomePage/home_volunteer.dart';
 import 'package:your_eyes/community_page.dart';
 import 'package:your_eyes/home_page.dart';
 import 'package:your_eyes/settings_page.dart';
@@ -39,7 +40,7 @@ class _MainPageState extends State<MainPage> {
           })
         },
         children: const [
-          HomePage(),
+          HomePageVolunteer(),
           CommunityPage(),
           SettingsPage(),
         ],
