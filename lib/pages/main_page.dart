@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:your_eyes/community_page.dart';
-import 'package:your_eyes/home_page.dart';
-import 'package:your_eyes/settings_page.dart';
+import 'package:your_eyes/pages/community_page.dart';
+import 'package:your_eyes/pages/home_page.dart';
+import 'package:your_eyes/pages/settings_page.dart';
 
 class MainPage extends StatefulWidget {
+  const MainPage({super.key});
+
   @override
   _MainPageState createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
-  int currentIndex = 0;
+  int currentIndex = 1;
 
-  PageController pageController = PageController(initialPage: 0);
+  PageController pageController = PageController(initialPage: 1);
 
   final bottomNavigationBarItems = [
     const BottomNavigationBarItem(
-        icon: Icon(Icons.home,size: 30,),
-        label: 'Home',
-    ),
-    const BottomNavigationBarItem(
         icon: Icon(Icons.favorite,size: 30),
         label: "Community",
+    ),
+    const BottomNavigationBarItem(
+      icon: Icon(Icons.home,size: 30,),
+      label: 'Home',
     ),
     const BottomNavigationBarItem(
         icon: Icon(Icons.settings,size: 30),
@@ -39,8 +41,8 @@ class _MainPageState extends State<MainPage> {
           })
         },
         children: const [
-          HomePage(),
           CommunityPage(),
+          HomePage(),
           SettingsPage(),
         ],
       ),

@@ -1,7 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:your_eyes/started_page.dart';
+import 'package:your_eyes/Login/started_page.dart';
 
-void main() {
+final shape = RoundedRectangleBorder(
+  borderRadius: BorderRadius.circular(20),
+);
+const mainColor = Color(0xff7f3dff);
+
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
