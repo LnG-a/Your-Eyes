@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:your_eyes/pages/community_page.dart';
-import 'package:your_eyes/pages/home_page.dart';
-import 'package:your_eyes/pages/settings_page.dart';
+
+import 'community_page.dart';
+import 'home_page.dart';
+import 'settings_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -17,16 +18,19 @@ class _MainPageState extends State<MainPage> {
 
   final bottomNavigationBarItems = [
     const BottomNavigationBarItem(
-        icon: Icon(Icons.favorite,size: 30),
-        label: "Commmunity",
+      icon: Icon(Icons.favorite, size: 30),
+      label: "Commmunity",
     ),
     const BottomNavigationBarItem(
-      icon: Icon(Icons.home,size: 30,),
+      icon: Icon(
+        Icons.home,
+        size: 30,
+      ),
       label: 'Home',
     ),
     const BottomNavigationBarItem(
-        icon: Icon(Icons.settings,size: 30),
-        label: "Settings",
+      icon: Icon(Icons.settings, size: 30),
+      label: "Settings",
     )
   ];
 
@@ -35,10 +39,8 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       body: PageView(
         controller: pageController,
-        onPageChanged: (newIndex) =>{
-          setState(()=>{
-            currentIndex=newIndex
-          })
+        onPageChanged: (newIndex) => {
+          setState(() => {currentIndex = newIndex})
         },
         children: const [
           CommunityPage(),
@@ -53,7 +55,9 @@ class _MainPageState extends State<MainPage> {
         items: bottomNavigationBarItems,
         onTap: (index) {
           setState(() {
-            pageController.animateToPage(index, duration: const Duration(milliseconds: 400), curve: Curves.easeInOut);
+            pageController.animateToPage(index,
+                duration: const Duration(milliseconds: 400),
+                curve: Curves.easeInOut);
           });
         },
         //type: BottomNavigationBarType.fixed,
