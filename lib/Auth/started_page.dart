@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:your_eyes/Login/login.dart';
+import 'package:your_eyes/Auth/login.dart';
 
 class StartedPage extends StatelessWidget {
   const StartedPage({Key? key}) : super(key: key);

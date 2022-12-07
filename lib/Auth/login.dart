@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:your_eyes/Auth/components/google_sign_in.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,7 +74,10 @@ class Login extends StatelessWidget {
               height: 70,
               width: 350,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
+                  provider.googleLogin();
+                },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(const Color(0xffFFFFFF),),
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(

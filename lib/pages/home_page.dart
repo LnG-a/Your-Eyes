@@ -20,30 +20,30 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-         Expanded(
-           child: Padding(
-             padding: const EdgeInsets.all(20),
-             child:
-               ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      minimumSize:  const Size(
-                          3000,
-                          2000,
-                      ),
-                      shape: shape
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child:
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    minimumSize:  const Size(
+                      3000,
+                      2000,
                     ),
-                    onLongPress: () {
-                      print("long press");
-                    },
-                    onPressed: () {
-                      print("press");
+                    shape: shape
+                ),
+                onLongPress: () {
+                  print("long press");
+                },
+                onPressed: () {
+                  print("press");
 
-                    },
-                    child: const Text("Gọi",style: TextStyle(fontSize: 50),),
-                  ),
+                },
+                child: const Text("Gọi",style: TextStyle(fontSize: 50),),
+              ),
 
-           ),
-         ),
+            ),
+          ),
         ],
       ),
     );

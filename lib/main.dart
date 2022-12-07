@@ -1,6 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:your_eyes/Login/started_page.dart';
+import 'package:provider/provider.dart';
+import 'package:your_eyes/Auth/components/google_sign_in.dart';
+import 'package:your_eyes/Auth/login.dart';
+import 'package:your_eyes/Auth/started_page.dart';
+import 'package:your_eyes/pages/home_page.dart';
 
 final shape = RoundedRectangleBorder(
   borderRadius: BorderRadius.circular(20),
@@ -19,13 +24,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        fontFamily: 'Inter',
-        primarySwatch: Colors.blue,
+    return ChangeNotifierProvider(
+      create: (context) => GoogleSignInProvider(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          fontFamily: 'Inter',
+          primarySwatch: Colors.blue,
+        ),
+        home: const StartedPage(),
       ),
-      home: const StartedPage(),
     );
   }
 }
