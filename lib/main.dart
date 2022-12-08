@@ -1,11 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:your_eyes/Auth/components/google_sign_in.dart';
-import 'package:your_eyes/Auth/login.dart';
 import 'package:your_eyes/Auth/started_page.dart';
-import 'package:your_eyes/pages/home_page.dart';
+
 
 final shape = RoundedRectangleBorder(
   borderRadius: BorderRadius.circular(20),

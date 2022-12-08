@@ -26,15 +26,8 @@ class GoogleSignInProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  handleAuthState() {
-    return StreamBuilder(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (BuildContext context, snapshot) {
-          if (snapshot.hasData) {
-            return const HomePage();
-          } else {
-            return const StartedPage();
-          }
-        });
+  Future logOut() async {
+    await googleSignIn.disconnect();
+    FirebaseAuth.instance.signOut();
   }
 }
