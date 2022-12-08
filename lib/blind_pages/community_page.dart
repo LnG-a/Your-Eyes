@@ -12,7 +12,7 @@ class _CommunityPageState extends State<CommunityPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Community"),
+        title: const Text("Community"),
       ),
     );
   }
