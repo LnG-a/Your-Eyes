@@ -15,6 +15,7 @@ class BlindCallPage extends StatefulWidget {
 class _BlindCallPageState extends State<BlindCallPage> {
   int _remoteUid = -1;
   late RtcEngine _engine;
+  late Widget localView = rtc_local_view.SurfaceView();
 
   @override
   void initState() {
@@ -58,6 +59,7 @@ class _BlindCallPageState extends State<BlindCallPage> {
     );
 
     await _engine.joinChannel(token, channelId, null, 0);
+    localView = rtc_local_view.SurfaceView();
   }
 
   @override
@@ -68,9 +70,15 @@ class _BlindCallPageState extends State<BlindCallPage> {
         ),
         body: Center(
           child: Stack(
-            children: [localView(), callEndButton()],
+            children: [localView, callEndButton()],
           ),
         ));
+  }
+
+  refresh() {
+    setState(() {
+      localView = rtc_local_view.SurfaceView();
+    });
   }
 
   Widget callEndButton() {
@@ -79,6 +87,7 @@ class _BlindCallPageState extends State<BlindCallPage> {
       padding: EdgeInsets.only(bottom: 40),
       child: RawMaterialButton(
         onPressed: () => Navigator.pop(context),
+        onLongPress: () => refresh(),
         child: Icon(
           Icons.call_end,
           color: Colors.white,
@@ -90,9 +99,5 @@ class _BlindCallPageState extends State<BlindCallPage> {
         padding: EdgeInsets.all(15),
       ),
     );
-  }
-
-  Widget localView() {
-    return rtc_local_view.SurfaceView();
   }
 }

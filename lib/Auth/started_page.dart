@@ -9,7 +9,7 @@ class StartedPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-            "Be My Eyes",
+          "Be My Eyes",
           style: TextStyle(fontSize: 25),
         ),
       ),
@@ -21,7 +21,7 @@ class StartedPage extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               child: RichText(
                 textAlign: TextAlign.left,
-                  text: const TextSpan(
+                text: const TextSpan(
                     text: "Join the community \n",
                     style: TextStyle(
                       fontSize: 20,
@@ -35,8 +35,7 @@ class StartedPage extends StatelessWidget {
                           color: Colors.black,
                         ),
                       ),
-                    ]
-                  ),
+                    ]),
               ),
             ),
           ),
@@ -49,9 +48,22 @@ class StartedPage extends StatelessWidget {
                   height: 60,
                   width: 400,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const Login(
+                              isBlind: true,
+                            );
+                          },
+                        ),
+                      );
+                    },
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(const Color(0xff7F3DFF),),
+                      backgroundColor: MaterialStateProperty.all(
+                        const Color(0xff7F3DFF),
+                      ),
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       )),
@@ -76,13 +88,17 @@ class StartedPage extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return const Login();
+                            return const Login(
+                              isBlind: false,
+                            );
                           },
                         ),
                       );
                     },
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(const Color(0xff7F3DFF),),
+                      backgroundColor: MaterialStateProperty.all(
+                        const Color(0xff7F3DFF),
+                      ),
                       shape: MaterialStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       )),
