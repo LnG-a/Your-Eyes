@@ -143,7 +143,7 @@ class _HomePageVolunteerState extends State<HomePageVolunteer> {
                   'Học cách trả lời cuộc gọi',
                   style: TextStyle(
                     fontFamily: 'Inter',
-                    fontSize: 22,
+                    fontSize: 20,
                     color: Colors.white,
                   ),
                 )
@@ -164,11 +164,11 @@ class _HomePageVolunteerState extends State<HomePageVolunteer> {
                     elevation: MaterialStateProperty.all(8),
                     shadowColor: MaterialStateProperty.all(Colors.grey),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Quan sát người thân',
                     style: TextStyle(
                       fontFamily: 'Inter',
-                      fontSize: 22,
+                      fontSize: 20,
                       color: Colors.white,
                     ),
                   )

@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:your_eyes/Auth/components/content_login_page.dart';
-import 'package:your_eyes/voluntary_pages/home_page.dart';
+import 'package:your_eyes/voluntary_pages/main_page.dart';
 
 import '../blind_pages/main_page.dart';
 
@@ -25,7 +25,7 @@ class _LoginState extends State<Login> {
           } else if (snapshot.hasData) {
             return widget.isBlind
                 ? const MainPage()
-                : const HomePageVolunteer();
+                : const MainPageVolunteer();
           } else if (snapshot.hasError) {
             return const Center(child: Text("Something Went Wrong"));
           } else {
