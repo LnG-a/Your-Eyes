@@ -9,7 +9,7 @@ class StartedPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-            "Be My Eyes",
+          "Be My Eyes",
           style: TextStyle(fontSize: 25),
         ),
       ),

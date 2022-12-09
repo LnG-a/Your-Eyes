@@ -33,7 +33,7 @@ class ContentLoginPage extends StatelessWidget {
                 child: const Center(
                   child: Text(
                     "By continuing, I confirm I am at\n"
-                        " least 17years old and i agree to\n"
+                        " least 17 years old and i agree to\n"
                         " accept the Your Eyes Term &\n"
                         " Privacy Policy.",
                     textAlign: TextAlign.left,

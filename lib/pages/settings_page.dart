@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:your_eyes/Auth/components/google_sign_in.dart';
 import 'package:your_eyes/main.dart';
+import 'package:your_eyes/pages/account_info.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -23,7 +24,19 @@ class _SettingsPageState extends State<SettingsPage> {
           const TitleSession(
             title: 'Hồ sơ cá nhân',
           ),
-          ButtonElement(text: "Thông tin cá nhân", onPressed: () {}),
+          ButtonElement(
+              text: "Thông tin cá nhân",
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const AccountInfo();
+                    },
+                  ),
+                );
+              },
+          ),
           ButtonElement(text: "Đổi mật khẩu", onPressed: () {}),
           ButtonElement(text: "Thay đổi email", onPressed: () {}),
           ButtonElement(text: "Thông báo", onPressed: () {}),
