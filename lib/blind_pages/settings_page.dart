@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:your_eyes/Auth/components/google_sign_in.dart';
 import 'package:your_eyes/main.dart';
-import 'package:your_eyes/pages/account_info.dart';
+import 'account_info.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
