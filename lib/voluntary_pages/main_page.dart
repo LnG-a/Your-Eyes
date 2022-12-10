@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'community.dart';
-import 'home_page.dart';
-import 'settings_page.dart';
+import 'package:your_eyes/voluntary_pages/community.dart';
+import 'package:your_eyes/voluntary_pages/settings_page.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+import 'home_page.dart';
+
+class MainPageVolunteer extends StatefulWidget {
+  const MainPageVolunteer({super.key});
 
   @override
-  _MainPageState createState() => _MainPageState();
+  _MainPageVolunteerState createState() => _MainPageVolunteerState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainPageVolunteerState extends State<MainPageVolunteer> {
   int currentIndex = 1;
 
   PageController pageController = PageController(initialPage: 1);
@@ -42,9 +43,9 @@ class _MainPageState extends State<MainPage> {
           setState(() => {currentIndex = newIndex})
         },
         children: const [
-          CommunityPage(),
-          HomePage(),
-          SettingsPage(),
+          CommunityPageVolunteer(),
+          HomePageVolunteer(),
+          SettingsPageVolunteer(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
