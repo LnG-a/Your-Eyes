@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:your_eyes/resources/auth_method.dart';
 
-import 'Auth/components/google_sign_in.dart';
+import 'Auth/components/firebase_auth_methods.dart';
 import 'Auth/started_page.dart';
 
 final shape = RoundedRectangleBorder(
@@ -27,7 +29,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => GoogleSignInProvider(),
+      create: (context) {
+        return FirebaseAuthMethod(FirebaseAuth.instance);
+      },
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:your_eyes/Auth/components/google_sign_in.dart';
+import 'package:your_eyes/Auth/components/firebase_auth_methods.dart';
 import 'package:your_eyes/main.dart';
 import 'account_info.dart';
 
@@ -56,8 +56,8 @@ class _SettingsPageState extends State<SettingsPage> {
           ButtonElement(text: "Youtube", onPressed: () {}),
           ButtonElement(text: "Instagram", onPressed: () {}),
           ElevatedButton(
-            onPressed: () {
-              final provider = Provider.of<GoogleSignInProvider>(
+            onPressed: () async {
+              final provider = Provider.of<FirebaseAuthMethod>(
                   context, listen: false);
               provider.logOut();
               },

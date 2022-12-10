@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:your_eyes/Auth/components/google_sign_in.dart';
+import 'package:your_eyes/Auth/components/firebase_auth_methods.dart';
+import 'package:your_eyes/Auth/phone_sign_in/phone_screen.dart';
 
 class ContentLoginPage extends StatelessWidget {
   const ContentLoginPage({Key? key}) : super(key: key);
@@ -71,7 +72,7 @@ class ContentLoginPage extends StatelessWidget {
               width: 350,
               child: TextButton(
                 onPressed: () {
-                  final provider = Provider.of<GoogleSignInProvider>(
+                  final provider = Provider.of<FirebaseAuthMethod>(
                       context, listen: false);
                   provider.googleLogin();
                 },
@@ -98,7 +99,16 @@ class ContentLoginPage extends StatelessWidget {
               height: 70,
               width: 350,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const PhoneScreen();
+                      },
+                    ),
+                  );
+                },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
                     const Color(0xff7F3DFF),),
