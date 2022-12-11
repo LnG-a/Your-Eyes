@@ -10,19 +10,24 @@ class AuthMethods {
 
   static late AppUser currentAppUser;
 
-  static Future<User> getCurrentUser() async {
-    User currentUser;
-    currentUser = _auth.currentUser!;
-    return currentUser;
+  static Future<void> initCurrentAppUser() async {
+    currentAppUser = AppUser("uid", "email", true);
+    currentAppUser = await readUserFromFirestore();
   }
 
-  static Future<AppUser> userLogin(String email, bool isBlind) async {
-    AppUser appUser;
-    appUser = AppUser(_auth.currentUser!.uid.toString(), email, isBlind);
-    currentAppUser = appUser;
-    final docUser = _userCollection.doc(appUser.uid);
+  static Future<void> userLogin(String email, bool isBlind) async {
+    final docUser = _userCollection.doc(_auth.currentUser!.uid);
+    final snapshot = await docUser.get();
+
+    AppUser appUser =
+        AppUser(_auth.currentUser!.uid.toString(), email, isBlind);
     docUser.set(appUser.toMap());
-    return appUser;
+
+    // if (snapshot.exists) {
+    //   appUser = AppUser.fromMap(snapshot.data() as Map<String, dynamic>);
+    // }
+
+    currentAppUser = appUser;
   }
 
   static Future<void> userSignup(String email) async {
@@ -47,9 +52,7 @@ class AuthMethods {
 
   static Future<AppUser> getUserDetails() async {
     try {
-      User currentUser = await getCurrentUser();
-
-      final doc = _userCollection.doc(currentUser.uid);
+      final doc = _userCollection.doc(_auth.currentUser!.uid);
       final snapshot = await doc.get();
 
       if (snapshot.exists) {
@@ -63,5 +66,12 @@ class AuthMethods {
 
   static void userLogout() {
     _auth.signOut();
+    _auth.authStateChanges().listen((User? user) {
+      if (user == null) {
+        print('User is currently signed out!');
+      } else {
+        print('User is signed in!');
+      }
+    });
   }
 }

@@ -12,6 +12,8 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  String email = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,8 +27,14 @@ class _SettingsPageState extends State<SettingsPage> {
           const TitleSession(
             title: 'Hồ sơ cá nhân',
           ),
-
-          ButtonElement(text: "Thông tin cá nhân", onPressed: () {}),
+          ButtonElement(text: email, onPressed: () {}),
+          ButtonElement(
+              text: "Thông tin cá nhân",
+              onPressed: () {
+                setState(() {
+                  email = AuthMethods.currentAppUser.email;
+                });
+              }),
           ButtonElement(text: "Đổi mật khẩu", onPressed: () {}),
           ButtonElement(text: "Thay đổi email", onPressed: () {}),
           ButtonElement(text: "Thông báo", onPressed: () {}),

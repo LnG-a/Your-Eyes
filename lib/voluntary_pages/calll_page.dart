@@ -63,6 +63,7 @@ class _VoluntaryCallPageState extends State<VoluntaryCallPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text("Voluntary Screen"),
       ),
       body: Stack(
@@ -70,6 +71,7 @@ class _VoluntaryCallPageState extends State<VoluntaryCallPage> {
           Center(
             child: _remoteVideo(),
           ),
+          callEndButton()
         ],
       ),
     );
@@ -87,5 +89,24 @@ class _VoluntaryCallPageState extends State<VoluntaryCallPage> {
         textAlign: TextAlign.center,
       );
     }
+  }
+
+  Widget callEndButton() {
+    return Container(
+      alignment: Alignment.bottomCenter,
+      padding: EdgeInsets.only(bottom: 40),
+      child: RawMaterialButton(
+        onPressed: () => Navigator.pop(context),
+        child: Icon(
+          Icons.call_end,
+          color: Colors.white,
+          size: 35,
+        ),
+        shape: CircleBorder(),
+        elevation: 2,
+        fillColor: Colors.redAccent,
+        padding: EdgeInsets.all(15),
+      ),
+    );
   }
 }

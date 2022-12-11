@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:your_eyes/email_and_password/reset_password.dart';
 import 'package:your_eyes/email_and_password/sign_up.dart';
 import 'package:your_eyes/resources/auth_method.dart';
+import 'package:your_eyes/voluntary_pages/main_page.dart';
 
 import '../blind_pages/main_page.dart';
 import '../design_system.dart';
@@ -32,8 +33,17 @@ class _LoginPageState extends State<LoginPage> {
       if (user != null) {
         await AuthMethods.userLogin(_emailController.text, widget.isBlind);
         setState(() {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const MainPage()));
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder: (context) => const MainPage()));
+          if (widget.isBlind) {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const MainPage()));
+          } else {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const MainPageVolunteer()));
+          }
         });
       }
     } on FirebaseAuthException catch (e) {

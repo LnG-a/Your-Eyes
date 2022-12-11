@@ -1,34 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:your_eyes/resources/auth_method.dart';
+import 'package:your_eyes/blind_pages/audio_book_page.dart';
+import 'package:your_eyes/blind_pages/settings_page.dart';
 
-import '../voluntary_pages/home_page.dart';
-import 'audio_book_page.dart';
 import 'home_page.dart';
-import 'settings_page.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+class MainPageVolunteer extends StatefulWidget {
+  const MainPageVolunteer({super.key});
 
   @override
-  _MainPageState createState() => _MainPageState();
+  _MainPageVolunteerState createState() => _MainPageVolunteerState();
 }
 
-class _MainPageState extends State<MainPage> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
+class _MainPageVolunteerState extends State<MainPageVolunteer> {
   int currentIndex = 1;
 
   PageController pageController = PageController(initialPage: 1);
-
-  final blindScreens = [
-    AudioBookPage(),
-    HomePage(),
-    SettingsPage(),
-  ];
 
   final volunteerScreens = [
     AudioBookPage(),
@@ -38,7 +24,7 @@ class _MainPageState extends State<MainPage> {
 
   final bottomNavigationBarItems = [
     const BottomNavigationBarItem(
-      icon: Icon(Icons.favorite, size: 30),
+      icon: Icon(Icons.book, size: 30),
       label: "Sách nói",
     ),
     const BottomNavigationBarItem(
@@ -62,9 +48,7 @@ class _MainPageState extends State<MainPage> {
         onPageChanged: (newIndex) => {
           setState(() => {currentIndex = newIndex})
         },
-        children: AuthMethods.currentAppUser.isBlind
-            ? blindScreens
-            : volunteerScreens,
+        children: volunteerScreens,
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedFontSize: 14,

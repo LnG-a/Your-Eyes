@@ -10,7 +10,7 @@ class StartedPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Be My Eyes",
+          "Your Eyes",
           style: TextStyle(fontSize: 25),
         ),
       ),
@@ -110,7 +110,6 @@ class StartedPage extends StatelessWidget {
               ],
             ),
           ),
-          //SizedBox(height: 60,),
         ],
       ),
     );

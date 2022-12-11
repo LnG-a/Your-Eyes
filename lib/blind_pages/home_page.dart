@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../design_system.dart';
-import 'calll_page.dart';
+import '../utils/call_ultilities.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -33,9 +34,16 @@ class _HomePageState extends State<HomePage> {
                     ),
                     shape: shape),
                 onLongPress: () async {},
-                onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => BlindCallPage()));
+                onPressed: () async {
+                  await [Permission.microphone, Permission.camera].request();
+                  CallUtils.dial(
+                    fromId: "lqtGaFILsOYzm1KkRq4lvp3akp52",
+                    toId: "oogxsr3xWcZsFdB1xbgjMXua25i2",
+                    context: context,
+                  );
+
+                  // Navigator.of(context).push(
+                  //     MaterialPageRoute(builder: (context) => BlindCallPage()));
                 },
                 child: const Text(
                   "Gọi",

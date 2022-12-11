@@ -21,7 +21,7 @@ class _HomePageVolunteerState extends State<HomePageVolunteer> {
           children: [
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(15.0),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
@@ -88,7 +88,7 @@ class _HomePageVolunteerState extends State<HomePageVolunteer> {
             Container(
               height: 130,
               width: 604,
-              padding: const EdgeInsets.fromLTRB(15, 39, 15, 0),
+              padding: const EdgeInsets.fromLTRB(15, 20, 15, 0),
               child: TextButton(
                 onPressed: () {},
                 style: ButtonStyle(
@@ -179,7 +179,7 @@ class _HomePageVolunteerState extends State<HomePageVolunteer> {
                   )),
             ),
             SizedBox(
-              height: 80,
+              height: 50,
             )
           ],
         ),
