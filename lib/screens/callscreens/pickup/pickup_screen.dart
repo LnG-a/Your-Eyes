@@ -31,7 +31,7 @@ class PickupScreen extends StatelessWidget {
             SizedBox(height: 50),
             SizedBox(height: 15),
             Text(
-              call.callerName,
+              "call.callerName",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,

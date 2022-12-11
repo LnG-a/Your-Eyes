@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:your_eyes/Auth/components/google_sign_in.dart';
+import 'package:your_eyes/email_and_password/login_page.dart';
 
 class ContentLoginPage extends StatelessWidget {
   const ContentLoginPage({Key? key}) : super(key: key);
@@ -33,9 +32,9 @@ class ContentLoginPage extends StatelessWidget {
                 child: const Center(
                   child: Text(
                     "By continuing, I confirm I am at\n"
-                        " least 17 years old and i agree to\n"
-                        " accept the Your Eyes Term &\n"
-                        " Privacy Policy.",
+                    " least 17 years old and i agree to\n"
+                    " accept the Your Eyes Term &\n"
+                    " Privacy Policy.",
                     textAlign: TextAlign.left,
                     style: TextStyle(fontSize: 20),
                   ),
@@ -47,10 +46,14 @@ class ContentLoginPage extends StatelessWidget {
               height: 70,
               width: 350,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => LoginPage(appUser: null)));
+                },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
-                    const Color(0xff7F3DFF),),
+                    const Color(0xff7F3DFF),
+                  ),
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   )),
@@ -71,13 +74,14 @@ class ContentLoginPage extends StatelessWidget {
               width: 350,
               child: TextButton(
                 onPressed: () {
-                  final provider = Provider.of<GoogleSignInProvider>(
-                      context, listen: false);
-                  provider.googleLogin();
+                  // final provider =
+                  //     Provider.of<GoogleSignInProvider>(context, listen: false);
+                  // provider.googleLogin();
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
-                    const Color(0xffFFFFFF),),
+                    const Color(0xffFFFFFF),
+                  ),
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                     side: const BorderSide(color: Color(0xff7F3DFF), width: 4),
@@ -101,7 +105,8 @@ class ContentLoginPage extends StatelessWidget {
                 onPressed: () {},
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
-                    const Color(0xff7F3DFF),),
+                    const Color(0xff7F3DFF),
+                  ),
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   )),

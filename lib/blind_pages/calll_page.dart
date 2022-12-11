@@ -67,6 +67,7 @@ class _BlindCallPageState extends State<BlindCallPage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Blind Screen'),
+          automaticallyImplyLeading: false,
         ),
         body: Center(
           child: Stack(

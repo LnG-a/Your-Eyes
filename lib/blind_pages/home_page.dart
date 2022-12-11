@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:your_eyes/blind_pages/calll_page.dart';
-import 'package:your_eyes/main.dart';
-import 'package:your_eyes/voluntary_pages/calll_page.dart';
+
+import '../design_system.dart';
+import 'calll_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,6 +16,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Trang chủ"),
+        automaticallyImplyLeading: false,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -31,13 +32,8 @@ class _HomePageState extends State<HomePage> {
                       2000,
                     ),
                     shape: shape),
-                onLongPress: () {
-                  print("long press");
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => VoluntaryCallPage()));
-                },
+                onLongPress: () {},
                 onPressed: () {
-                  print("press");
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => BlindCallPage()));
                 },

@@ -1,9 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleSignInProvider extends ChangeNotifier {
   final googleSignIn = GoogleSignIn();
+  final CollectionReference _userCollection =
+      FirebaseFirestore.instance.collection("USERS_COLLECTION");
 
   GoogleSignInAccount? _user;
 
@@ -27,5 +30,10 @@ class GoogleSignInProvider extends ChangeNotifier {
   Future logOut() async {
     await googleSignIn.disconnect();
     FirebaseAuth.instance.signOut();
+  }
+
+  String checkNull(String? string) {
+    if (string != null) return string;
+    return "string is null";
   }
 }

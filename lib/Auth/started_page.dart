@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:your_eyes/Auth/login.dart';
+
+import 'content_login_page.dart';
 
 class StartedPage extends StatelessWidget {
   const StartedPage({Key? key}) : super(key: key);
@@ -52,11 +53,7 @@ class StartedPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) {
-                            return const Login(
-                              isBlind: true,
-                            );
-                          },
+                          builder: (context) => ContentLoginPage(),
                         ),
                       );
                     },
@@ -87,11 +84,7 @@ class StartedPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) {
-                            return const Login(
-                              isBlind: false,
-                            );
-                          },
+                          builder: (context) => ContentLoginPage(),
                         ),
                       );
                     },

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:your_eyes/Auth/components/google_sign_in.dart';
-import 'package:your_eyes/main.dart';
+import 'package:your_eyes/resources/auth_method.dart';
+
+import '../Auth/started_page.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -16,6 +16,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Cài đặt"),
+        automaticallyImplyLeading: false,
       ),
       body: ListView(
         padding: const EdgeInsets.all(20),
@@ -42,12 +43,18 @@ class _SettingsPageState extends State<SettingsPage> {
           ButtonElement(text: "Twitter", onPressed: () {}),
           ButtonElement(text: "Youtube", onPressed: () {}),
           ButtonElement(text: "Instagram", onPressed: () {}),
+          //buildButton("Đăng xuất", large, colorType1, () {}),
           ElevatedButton(
             onPressed: () {
-              final provider = Provider.of<GoogleSignInProvider>(
-                  context, listen: false);
-              provider.logOut();
-              },
+              // final provider =
+              //     Provider.of<GoogleSignInProvider>(context, listen: false);
+              // provider.logOut();
+              Navigator.of(context).popUntil((route) => route.isFirst);
+
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => StartedPage()));
+              AuthMethods.userLogout();
+            },
             child: const Text("Đăng xuất"),
           ),
         ],
@@ -85,8 +92,7 @@ class TitleSession extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: const TextStyle(
-          color: mainColor, fontWeight: FontWeight.bold, fontSize: 14),
+      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
     );
   }
 }

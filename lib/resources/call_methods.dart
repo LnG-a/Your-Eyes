@@ -3,7 +3,7 @@ import 'package:your_eyes/models/call.dart';
 
 class CallMethods {
   final CollectionReference callCollection =
-      FirebaseFirestore.instance.collection("CALL_COLLECTION");
+      FirebaseFirestore.instance.collection("calls");
 
   Stream<DocumentSnapshot> callStream({required String uid}) =>
       callCollection.doc(uid).snapshots();
@@ -11,10 +11,10 @@ class CallMethods {
   Future<bool> makeCall({required Call call}) async {
     try {
       call.hasDialled = true;
-      Map<String, dynamic> hasDialledMap = call.toMap(call);
+      Map<String, dynamic> hasDialledMap = call.toMap();
 
       call.hasDialled = false;
-      Map<String, dynamic> hasNotDialledMap = call.toMap(call);
+      Map<String, dynamic> hasNotDialledMap = call.toMap();
 
       await callCollection.doc(call.callerId).set(hasDialledMap);
       await callCollection.doc(call.receiverId).set(hasNotDialledMap);

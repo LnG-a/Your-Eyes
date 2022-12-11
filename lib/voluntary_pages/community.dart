@@ -13,6 +13,7 @@ class _CommunityPageVolunteerState extends State<CommunityPageVolunteer> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Community"),
+        automaticallyImplyLeading: false,
       ),
     );
   }

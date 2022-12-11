@@ -12,7 +12,8 @@ class _CommunityPageState extends State<CommunityPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Community"),
+        title: Text("Community"),
+        automaticallyImplyLeading: false,
       ),
     );
   }

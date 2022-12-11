@@ -11,8 +11,7 @@ class CallUtils {
   static final CallMethods callMethods = CallMethods();
 
   static dial({required AppUser from, required AppUser to, context}) async {
-    Call call = Call(from.uid, from.name, to.uid, to.name,
-        Random().nextInt(1000).toString(), true);
+    Call call = Call(from.uid, to.uid, Random().nextInt(1000).toString(), true);
 
     bool callMade = await callMethods.makeCall(call: call);
 

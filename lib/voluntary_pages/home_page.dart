@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:your_eyes/voluntary_pages/calll_page.dart';
 
 class HomePageVolunteer extends StatefulWidget {
   const HomePageVolunteer({Key? key}) : super(key: key);
@@ -13,6 +14,7 @@ class _HomePageVolunteerState extends State<HomePageVolunteer> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home Page"),
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Column(
@@ -75,8 +77,7 @@ class _HomePageVolunteerState extends State<HomePageVolunteer> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.normal,
                                   fontSize: 18,
-                                )
-                            )
+                                ))
                           ],
                         ),
                       ),
@@ -85,7 +86,6 @@ class _HomePageVolunteerState extends State<HomePageVolunteer> {
                 ],
               ),
             ),
-
             Container(
               height: 130,
               width: 604,
@@ -94,9 +94,10 @@ class _HomePageVolunteerState extends State<HomePageVolunteer> {
                 onPressed: () {},
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.white),
-                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
                   elevation: MaterialStateProperty.all(8),
                   shadowColor: MaterialStateProperty.all(Colors.grey),
@@ -113,12 +114,11 @@ class _HomePageVolunteerState extends State<HomePageVolunteer> {
                     ),
                     children: [
                       TextSpan(
-                        text: "Là thành viên từ 6 th10, 2022",
-                        style: TextStyle(
-                          fontWeight: FontWeight.normal,
-                          fontSize: 16,
-                        )
-                      ),
+                          text: "Là thành viên từ 6 th10, 2022",
+                          style: TextStyle(
+                            fontWeight: FontWeight.normal,
+                            fontSize: 16,
+                          )),
                     ],
                   ),
                 ),
@@ -129,25 +129,29 @@ class _HomePageVolunteerState extends State<HomePageVolunteer> {
               width: 604,
               padding: const EdgeInsets.fromLTRB(15, 19, 15, 0),
               child: TextButton(
-                onPressed: () {},
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(const Color(0xff7F3DFF)),
-                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => VoluntaryCallPage()));
+                  },
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(const Color(0xff7F3DFF)),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    elevation: MaterialStateProperty.all(8),
+                    shadowColor: MaterialStateProperty.all(Colors.grey),
                   ),
-                  ),
-                  elevation: MaterialStateProperty.all(8),
-                  shadowColor: MaterialStateProperty.all(Colors.grey),
-                ),
-                child: const Text(
-                  'Học cách trả lời cuộc gọi',
-                  style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontSize: 20,
-                    color: Colors.white,
-                  ),
-                )
-              ),
+                  child: const Text(
+                    'Học cách trả lời cuộc gọi',
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
+                  )),
             ),
             Container(
               height: 94,
@@ -156,10 +160,12 @@ class _HomePageVolunteerState extends State<HomePageVolunteer> {
               child: TextButton(
                   onPressed: () {},
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(const Color(0xff7F3DFF)),
-                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+                    backgroundColor:
+                        MaterialStateProperty.all(const Color(0xff7F3DFF)),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
                     elevation: MaterialStateProperty.all(8),
                     shadowColor: MaterialStateProperty.all(Colors.grey),
@@ -171,8 +177,7 @@ class _HomePageVolunteerState extends State<HomePageVolunteer> {
                       fontSize: 20,
                       color: Colors.white,
                     ),
-                  )
-              ),
+                  )),
             ),
           ],
         ),

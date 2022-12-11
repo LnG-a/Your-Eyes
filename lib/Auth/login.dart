@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:your_eyes/Auth/components/content_login_page.dart';
+import 'package:your_eyes/Auth/content_login_page.dart';
 import 'package:your_eyes/voluntary_pages/main_page.dart';
 
 import '../blind_pages/main_page.dart';
