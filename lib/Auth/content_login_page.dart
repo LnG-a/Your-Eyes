@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:your_eyes/email_and_password/login_page.dart';
 
 class ContentLoginPage extends StatelessWidget {
-  const ContentLoginPage({Key? key}) : super(key: key);
+  final bool isBlind;
+  ContentLoginPage({Key? key, required this.isBlind}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +49,7 @@ class ContentLoginPage extends StatelessWidget {
               child: TextButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => LoginPage(appUser: null)));
+                      builder: (context) => LoginPage(isBlind: isBlind)));
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(

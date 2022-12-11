@@ -5,7 +5,9 @@ import 'package:your_eyes/email_and_password/reset_password_email.dart';
 import '../design_system.dart';
 
 class ResetPassword extends StatefulWidget {
-  const ResetPassword({Key? key}) : super(key: key);
+  final bool isBlind;
+
+  ResetPassword({Key? key, required this.isBlind}) : super(key: key);
 
   @override
   ResetPasswordState createState() => ResetPasswordState();
@@ -24,8 +26,10 @@ class ResetPasswordState extends State<ResetPassword> {
       setState(() {
         success = 1;
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) =>
-                ResetPasswordEmail(email: _emailController.text)));
+            builder: (context) => ResetPasswordEmail(
+                  email: _emailController.text,
+                  isBlind: widget.isBlind,
+                )));
       });
     } on FirebaseAuthException catch (e) {
       setState(() {

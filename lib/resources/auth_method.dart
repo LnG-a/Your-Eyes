@@ -8,15 +8,18 @@ class AuthMethods {
       FirebaseFirestore.instance.collection("users");
   static final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  static late AppUser currentAppUser;
+
   static Future<User> getCurrentUser() async {
     User currentUser;
     currentUser = _auth.currentUser!;
     return currentUser;
   }
 
-  static Future<AppUser> userLogin(String email) async {
+  static Future<AppUser> userLogin(String email, bool isBlind) async {
     AppUser appUser;
-    appUser = AppUser(_auth.currentUser!.uid.toString(), email, true);
+    appUser = AppUser(_auth.currentUser!.uid.toString(), email, isBlind);
+    currentAppUser = appUser;
     final docUser = _userCollection.doc(appUser.uid);
     docUser.set(appUser.toMap());
     return appUser;
@@ -31,8 +34,8 @@ class AuthMethods {
     return;
   }
 
-  static Future<AppUser> readUserFromFirestore(String uid) async {
-    final docUser = _userCollection.doc(uid);
+  static Future<AppUser> readUserFromFirestore() async {
+    final docUser = _userCollection.doc(_auth.currentUser!.uid);
     final snapshot = await docUser.get();
 
     if (snapshot.exists) {

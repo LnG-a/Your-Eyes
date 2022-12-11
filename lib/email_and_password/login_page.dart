@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:your_eyes/email_and_password/reset_password.dart';
 import 'package:your_eyes/email_and_password/sign_up.dart';
-import 'package:your_eyes/models/user.dart';
 import 'package:your_eyes/resources/auth_method.dart';
 
 import '../blind_pages/main_page.dart';
@@ -12,9 +11,8 @@ final FirebaseAuth _auth = FirebaseAuth.instance;
 
 // ignore: must_be_immutable
 class LoginPage extends StatefulWidget {
-  AppUser? appUser;
-
-  LoginPage({Key? key, required this.appUser}) : super(key: key);
+  final bool isBlind;
+  LoginPage({Key? key, required this.isBlind}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -32,10 +30,10 @@ class _LoginPageState extends State<LoginPage> {
               email: _emailController.text, password: _passwordController.text))
           .user;
       if (user != null) {
-        widget.appUser = await AuthMethods.userLogin(_emailController.text);
+        await AuthMethods.userLogin(_emailController.text, widget.isBlind);
         setState(() {
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => MainPage()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const MainPage()));
         });
       }
     } on FirebaseAuthException catch (e) {
@@ -153,7 +151,8 @@ class _LoginPageState extends State<LoginPage> {
                     InkWell(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => ResetPassword()));
+                            builder: (context) =>
+                                ResetPassword(isBlind: widget.isBlind)));
                       },
                       child: const Text(
                         'Forgot Password',
@@ -179,7 +178,8 @@ class _LoginPageState extends State<LoginPage> {
                         InkWell(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => SignupPage()));
+                                builder: (context) =>
+                                    SignupPage(isBlind: widget.isBlind)));
                           },
                           child: const Text('Sign Up',
                               style: TextStyle(

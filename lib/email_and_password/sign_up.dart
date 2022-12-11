@@ -9,7 +9,9 @@ import '../design_system.dart';
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class SignupPage extends StatefulWidget {
-  const SignupPage({Key? key}) : super(key: key);
+  final bool isBlind;
+
+  SignupPage({Key? key, required this.isBlind}) : super(key: key);
 
   @override
   SignupPageState createState() => SignupPageState();
@@ -34,6 +36,7 @@ class SignupPageState extends State<SignupPage> {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (context) => VerifyScreen(
                   email: _emailController.text,
+                  isBlind: widget.isBlind,
                 )));
       }
     } on FirebaseAuthException catch (e) {
@@ -58,7 +61,7 @@ class SignupPageState extends State<SignupPage> {
             onPressed: () {
               Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => LoginPage(
-                        appUser: null,
+                        isBlind: widget.isBlind,
                       )));
             },
           ),

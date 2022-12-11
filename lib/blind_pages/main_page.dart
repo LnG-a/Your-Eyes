@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'community.dart';
+import 'package:your_eyes/resources/auth_method.dart';
+
+import '../voluntary_pages/home_page.dart';
+import 'audio_book_page.dart';
 import 'home_page.dart';
 import 'settings_page.dart';
 
@@ -14,6 +17,18 @@ class _MainPageState extends State<MainPage> {
   int currentIndex = 1;
 
   PageController pageController = PageController(initialPage: 1);
+
+  final blindScreens = [
+    AudioBookPage(),
+    HomePage(),
+    SettingsPage(),
+  ];
+
+  final volunteerScreens = [
+    AudioBookPage(),
+    HomePageVolunteer(),
+    SettingsPage(),
+  ];
 
   final bottomNavigationBarItems = [
     const BottomNavigationBarItem(
@@ -41,11 +56,9 @@ class _MainPageState extends State<MainPage> {
         onPageChanged: (newIndex) => {
           setState(() => {currentIndex = newIndex})
         },
-        children: const [
-          CommunityPage(),
-          HomePage(),
-          SettingsPage(),
-        ],
+        children: AuthMethods.currentAppUser.isBlind
+            ? blindScreens
+            : volunteerScreens,
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedFontSize: 14,

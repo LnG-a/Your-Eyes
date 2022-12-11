@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:your_eyes/Auth/content_login_page.dart';
-import 'package:your_eyes/voluntary_pages/main_page.dart';
 
 import '../blind_pages/main_page.dart';
 
@@ -23,13 +22,13 @@ class _LoginState extends State<Login> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasData) {
-            return widget.isBlind
-                ? const MainPage()
-                : const MainPageVolunteer();
+            return const MainPage();
           } else if (snapshot.hasError) {
             return const Center(child: Text("Something Went Wrong"));
           } else {
-            return const ContentLoginPage();
+            return ContentLoginPage(
+              isBlind: true,
+            );
           }
         },
       ),

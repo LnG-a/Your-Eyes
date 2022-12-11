@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class CommunityPage extends StatefulWidget {
-  const CommunityPage({Key? key}) : super(key: key);
+class AudioBookPage extends StatefulWidget {
+  const AudioBookPage({Key? key}) : super(key: key);
 
   @override
-  State<CommunityPage> createState() => _CommunityPageState();
+  State<AudioBookPage> createState() => _AudioBookPageState();
 }
 
-class _CommunityPageState extends State<CommunityPage> {
+class _AudioBookPageState extends State<AudioBookPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

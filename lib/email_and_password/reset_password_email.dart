@@ -6,8 +6,10 @@ import 'login_page.dart';
 // ignore: must_be_immutable
 class ResetPasswordEmail extends StatelessWidget {
   final String email;
+  final bool isBlind;
 
-  const ResetPasswordEmail({Key? key, required this.email}) : super(key: key);
+  ResetPasswordEmail({Key? key, required this.email, required this.isBlind})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +74,7 @@ class ResetPasswordEmail extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => LoginPage(
-                              appUser: null,
+                              isBlind: this.isBlind,
                             )));
                   },
                   child: const Text(

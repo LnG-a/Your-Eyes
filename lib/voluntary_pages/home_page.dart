@@ -19,71 +19,70 @@ class _HomePageVolunteerState extends State<HomePageVolunteer> {
       body: Center(
         child: Column(
           children: [
-            Container(
-              height: 15,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: const Color(0xff7F3DFF),
-              ),
-              height: 300,
-              width: 400,
-              padding: const EdgeInsets.fromLTRB(29, 19, 29, 0),
-              child: ListView(
-                children: [
-                  Image.asset(
-                    'assets/images/earth.png',
-                    height: 200,
-                    width: 200,
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: const Color(0xff7F3DFF),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  child: ListView(
                     children: [
-                      RichText(
-                        textAlign: TextAlign.center,
-                        text: const TextSpan(
-                          text: "1.000.642\n",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24,
-                            fontFamily: "Inter",
-                            color: Colors.black,
-                          ),
-                          children: [
-                            TextSpan(
-                              text: "Khiếm thị",
-                              style: TextStyle(
-                                fontWeight: FontWeight.normal,
-                                fontSize: 18,
-                              ),
-                            ),
-                          ],
-                        ),
+                      Image.asset(
+                        'assets/images/earth.png',
+                        height: 200,
+                        width: 200,
                       ),
-                      RichText(
-                        textAlign: TextAlign.center,
-                        text: const TextSpan(
-                          text: "6.116.368\n",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24,
-                            fontFamily: "Inter",
-                            color: Colors.black,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          RichText(
+                            textAlign: TextAlign.center,
+                            text: const TextSpan(
+                              text: "1.000.642\n",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24,
+                                fontFamily: "Inter",
+                                color: Colors.black,
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: "Khiếm thị",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                          children: [
-                            TextSpan(
-                                text: "Tình nguyện viên",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 18,
-                                ))
-                          ],
-                        ),
+                          RichText(
+                            textAlign: TextAlign.center,
+                            text: const TextSpan(
+                              text: "6.116.368\n",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24,
+                                fontFamily: "Inter",
+                                color: Colors.black,
+                              ),
+                              children: [
+                                TextSpan(
+                                    text: "Tình nguyện viên",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 18,
+                                    ))
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
+                ),
               ),
             ),
             Container(
@@ -179,6 +178,9 @@ class _HomePageVolunteerState extends State<HomePageVolunteer> {
                     ),
                   )),
             ),
+            SizedBox(
+              height: 80,
+            )
           ],
         ),
       ),

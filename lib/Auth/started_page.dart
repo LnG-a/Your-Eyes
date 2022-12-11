@@ -53,7 +53,7 @@ class StartedPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ContentLoginPage(),
+                          builder: (context) => ContentLoginPage(isBlind: true),
                         ),
                       );
                     },
@@ -84,7 +84,8 @@ class StartedPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ContentLoginPage(),
+                          builder: (context) =>
+                              ContentLoginPage(isBlind: false),
                         ),
                       );
                     },

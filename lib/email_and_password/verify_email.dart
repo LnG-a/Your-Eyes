@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:your_eyes/blind_pages/main_page.dart';
 import 'package:your_eyes/email_and_password/login_page.dart';
-import 'package:your_eyes/models/user.dart';
 import 'package:your_eyes/resources/auth_method.dart';
 
 import '../design_system.dart';
@@ -12,7 +11,10 @@ import '../design_system.dart';
 // ignore: must_be_immutable
 class VerifyScreen extends StatefulWidget {
   String email;
-  VerifyScreen({Key? key, required this.email}) : super(key: key);
+  final bool isBlind;
+
+  VerifyScreen({Key? key, required this.email, required this.isBlind})
+      : super(key: key);
 
   @override
   VerifyScreenState createState() => VerifyScreenState();
@@ -103,7 +105,7 @@ class VerifyScreenState extends State<VerifyScreen> {
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => LoginPage(
-                              appUser: null,
+                              isBlind: widget.isBlind,
                             )));
                   },
                   child: const Text(
@@ -119,13 +121,13 @@ class VerifyScreenState extends State<VerifyScreen> {
   Future<void> checkEmailVerified() async {
     user = auth.currentUser!;
     await user.reload();
-    AppUser appUser = await AuthMethods.userLogin(widget.email);
+    await AuthMethods.userLogin(widget.email, widget.isBlind);
     if (user.emailVerified) {
       timer.cancel();
+
       // ignore: use_build_context_synchronously
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => MainPage()));
-      // Navigator.of(context).pushNamed('/main_screen');
+          context, MaterialPageRoute(builder: (context) => const MainPage()));
     }
   }
 }

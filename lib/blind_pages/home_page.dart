@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
                       2000,
                     ),
                     shape: shape),
-                onLongPress: () {},
+                onLongPress: () async {},
                 onPressed: () {
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => BlindCallPage()));
