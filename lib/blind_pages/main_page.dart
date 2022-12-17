@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:your_eyes/resources/auth_method.dart';
+import 'package:your_eyes/screens/callscreens/pickup/pickup_layout.dart';
 
 import '../voluntary_pages/home_page.dart';
 import 'audio_book_page.dart';
@@ -18,6 +19,11 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
+    // SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+    //   userProvider = Provider.of<UserProvider>(context, listen: false);
+    //   userProvider.refreshUser();
+    // });
   }
 
   int currentIndex = 1;
@@ -56,29 +62,31 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: PageView(
-        controller: pageController,
-        onPageChanged: (newIndex) => {
-          setState(() => {currentIndex = newIndex})
-        },
-        children: AuthMethods.currentAppUser.isBlind
-            ? blindScreens
-            : volunteerScreens,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedFontSize: 14,
-        unselectedFontSize: 14,
-        currentIndex: currentIndex,
-        items: bottomNavigationBarItems,
-        onTap: (index) {
-          setState(() {
-            pageController.animateToPage(index,
-                duration: const Duration(milliseconds: 400),
-                curve: Curves.easeInOut);
-          });
-        },
-        //type: BottomNavigationBarType.fixed,
+    return PickupLayout(
+      child: Scaffold(
+        body: PageView(
+          controller: pageController,
+          onPageChanged: (newIndex) => {
+            setState(() => {currentIndex = newIndex})
+          },
+          children: AuthMethods.currentAppUser.isBlind
+              ? blindScreens
+              : volunteerScreens,
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          selectedFontSize: 14,
+          unselectedFontSize: 14,
+          currentIndex: currentIndex,
+          items: bottomNavigationBarItems,
+          onTap: (index) {
+            setState(() {
+              pageController.animateToPage(index,
+                  duration: const Duration(milliseconds: 400),
+                  curve: Curves.easeInOut);
+            });
+          },
+          //type: BottomNavigationBarType.fixed,
+        ),
       ),
     );
   }

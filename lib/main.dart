@@ -11,8 +11,8 @@ import 'design_system.dart';
 
 const appId = "00c69fdbfc64436b9786ed1a9a24d67b";
 const token =
-    "007eJxTYPi8+aLHZU73Fd9PqXKErJTqjE5ckSZlLp+o+Vgj64KKRZICg4FBspllWkpSWrKZiYmxWZKluYVZaophomWikUmKmXmS76wpyQ2BjAxHNpmyMjJAIIjPy5CWWVRcEp+ckZiXl5rDwAAADkYhvw==";
-const channelId = "first_channel";
+    "007eJxTYLh8knXvpb43XVNyNZheFD+ZdKvu++U76YcjmXpONbtNMtilwGBgkGxmmZaSlJZsZmJibJZkaW5hlppimGiZaGSSYmaedKJwTnJDICODR/1tFkYGCATx2RmSMxLz8lJzGBgAuX4j8Q==";
+const channelId = "channel";
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();

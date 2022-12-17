@@ -1,32 +1,48 @@
+import 'dart:async';
+
 import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:agora_rtc_engine/rtc_remote_view.dart' as rtc_remote_view;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:your_eyes/models/call.dart';
+import 'package:your_eyes/resources/call_methods.dart';
 
-import '../main.dart';
+import '../../main.dart';
+import '../../resources/auth_method.dart';
 
-class VoluntaryCallPage extends StatefulWidget {
-  const VoluntaryCallPage({Key? key}) : super(key: key);
+class CallScreenVolunteer extends StatefulWidget {
+  final Call call;
+
+  CallScreenVolunteer({
+    super.key,
+    required this.call,
+  });
 
   @override
-  State<VoluntaryCallPage> createState() => _VoluntaryCallPageState();
+  State<CallScreenVolunteer> createState() => _CallScreenVolunteerState();
 }
 
-class _VoluntaryCallPageState extends State<VoluntaryCallPage> {
+class _CallScreenVolunteerState extends State<CallScreenVolunteer> {
   int _remoteUid = -1;
   late RtcEngine _engine;
+  late StreamSubscription callStreamSubscription;
 
   @override
   void initState() {
     super.initState();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      callStreamSubscription = CallMethods()
+          .callStream(uid: AuthMethods.currentAppUser.uid)
+          .listen((DocumentSnapshot ds) {
+        // defining the logic
+        if (!ds.exists) {
+          Navigator.pop(context);
+        }
+      });
+    });
     initAgora();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _engine.leaveChannel();
-    _engine.destroy();
   }
 
   Future<void> initAgora() async {
@@ -62,10 +78,6 @@ class _VoluntaryCallPageState extends State<VoluntaryCallPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: const Text("Voluntary Screen"),
-      ),
       body: Stack(
         children: [
           Center(
@@ -84,10 +96,7 @@ class _VoluntaryCallPageState extends State<VoluntaryCallPage> {
         channelId: channelId,
       );
     } else {
-      return Text(
-        'Please wait for remote user to join',
-        textAlign: TextAlign.center,
-      );
+      return Center(child: CircularProgressIndicator());
     }
   }
 
@@ -96,7 +105,9 @@ class _VoluntaryCallPageState extends State<VoluntaryCallPage> {
       alignment: Alignment.bottomCenter,
       padding: EdgeInsets.only(bottom: 40),
       child: RawMaterialButton(
-        onPressed: () => Navigator.pop(context),
+        onPressed: () => CallMethods().endCall(
+          call: widget.call,
+        ),
         child: Icon(
           Icons.call_end,
           color: Colors.white,
@@ -108,5 +119,15 @@ class _VoluntaryCallPageState extends State<VoluntaryCallPage> {
         padding: EdgeInsets.all(15),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    CallMethods().endCall(
+      call: widget.call,
+    );
+    _engine.leaveChannel();
+    _engine.destroy();
   }
 }

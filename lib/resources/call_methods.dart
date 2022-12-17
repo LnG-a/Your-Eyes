@@ -5,8 +5,9 @@ class CallMethods {
   final CollectionReference callCollection =
       FirebaseFirestore.instance.collection("calls");
 
-  Stream<DocumentSnapshot> callStream({required String uid}) =>
-      callCollection.doc(uid).snapshots();
+  Stream<DocumentSnapshot> callStream({required String uid}) {
+    return callCollection.doc(uid).snapshots();
+  }
 
   Future<bool> makeCall({required Call call}) async {
     try {

@@ -5,11 +5,10 @@ import 'package:agora_rtc_engine/rtc_local_view.dart' as rtc_local_view;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:provider/provider.dart';
 import 'package:your_eyes/main.dart';
+import 'package:your_eyes/resources/auth_method.dart';
 
 import '../../models/call.dart';
-import '../../provider/user_provider.dart';
 import '../../resources/call_methods.dart';
 
 class CallScreen extends StatefulWidget {
@@ -25,12 +24,9 @@ class CallScreen extends StatefulWidget {
 
 class _CallScreenState extends State<CallScreen> {
   final CallMethods callMethods = CallMethods();
-  late UserProvider userProvider;
   late StreamSubscription callStreamSubscription;
-
-  static final _users = <int>[];
+  int _remoteUid = -1;
   final _infoStrings = <String>[];
-  bool muted = false;
 
   late RtcEngine _engine;
 
@@ -39,6 +35,19 @@ class _CallScreenState extends State<CallScreen> {
     super.initState();
     addPostFrameCallback();
     initializeAgora();
+  }
+
+  addPostFrameCallback() {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      callStreamSubscription = callMethods
+          .callStream(uid: AuthMethods.currentAppUser.uid)
+          .listen((DocumentSnapshot ds) {
+        // defining the logic
+        if (!ds.exists) {
+          Navigator.pop(context);
+        }
+      });
+    });
   }
 
   Future<void> initializeAgora() async {
@@ -51,7 +60,6 @@ class _CallScreenState extends State<CallScreen> {
       });
       return;
     }
-
     _engine = await RtcEngine.create(appId);
     await _engine.enableVideo();
     _engine.setEventHandler(RtcEngineEventHandler(joinChannelSuccess: (
@@ -67,7 +75,7 @@ class _CallScreenState extends State<CallScreen> {
       setState(() {
         final info = 'onUserJoined: $uid';
         _infoStrings.add(info);
-        _users.add(uid);
+        _remoteUid = uid;
       });
     }, userOffline: (int a, UserOfflineReason reason) {
       callMethods.endCall(call: widget.call);
@@ -77,40 +85,8 @@ class _CallScreenState extends State<CallScreen> {
         _infoStrings.add(info);
       });
     }));
-
-    await _engine.joinChannel(null, widget.call.channelId, null, 0);
-  }
-
-  addPostFrameCallback() {
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      userProvider = Provider.of<UserProvider>(context, listen: false);
-
-      callStreamSubscription = callMethods
-          .callStream(uid: userProvider.getUser.uid)
-          .listen((DocumentSnapshot ds) {
-        // defining the logic
-        switch (ds.data) {
-          // case null:
-          //   // snapshot is null which means that call is hanged and documents are deleted
-          //   Navigator.pop(context);
-          //   break;
-
-          default:
-            break;
-        }
-      });
-    });
-  }
-
-  void _onToggleMute() {
-    setState(() {
-      muted = !muted;
-    });
-    _engine.muteLocalAudioStream(muted);
-  }
-
-  void _onSwitchCamera() {
     _engine.switchCamera();
+    await _engine.joinChannel(token, channelId, null, 0);
   }
 
   /// Toolbar layout
@@ -122,21 +98,11 @@ class _CallScreenState extends State<CallScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           RawMaterialButton(
-            onPressed: _onToggleMute,
-            child: Icon(
-              muted ? Icons.mic : Icons.mic_off,
-              color: muted ? Colors.white : Colors.blueAccent,
-              size: 20.0,
-            ),
-            shape: CircleBorder(),
-            elevation: 2.0,
-            fillColor: muted ? Colors.blueAccent : Colors.white,
-            padding: const EdgeInsets.all(12.0),
-          ),
-          RawMaterialButton(
-            onPressed: () => callMethods.endCall(
-              call: widget.call,
-            ),
+            onPressed: () {
+              callMethods.endCall(
+                call: widget.call,
+              );
+            },
             child: Icon(
               Icons.call_end,
               color: Colors.white,
@@ -147,18 +113,6 @@ class _CallScreenState extends State<CallScreen> {
             fillColor: Colors.redAccent,
             padding: const EdgeInsets.all(15.0),
           ),
-          RawMaterialButton(
-            onPressed: _onSwitchCamera,
-            child: Icon(
-              Icons.switch_camera,
-              color: Colors.blueAccent,
-              size: 20.0,
-            ),
-            shape: CircleBorder(),
-            elevation: 2.0,
-            fillColor: Colors.white,
-            padding: const EdgeInsets.all(12.0),
-          )
         ],
       ),
     );
@@ -166,11 +120,14 @@ class _CallScreenState extends State<CallScreen> {
 
   @override
   void dispose() {
+    callMethods.endCall(
+      call: widget.call,
+    );
     // clear users
-    _users.clear();
     // destroy sdk
-    _engine.leaveChannel();
-    _engine.destroy();
+    // _engine.leaveChannel();
+    // _engine.destroy();
+    _engine.switchCamera();
     callStreamSubscription.cancel();
     super.dispose();
   }
@@ -182,7 +139,7 @@ class _CallScreenState extends State<CallScreen> {
       body: Center(
         child: Stack(
           children: <Widget>[
-            _localView(),
+            _view(),
             _toolbar(),
           ],
         ),
@@ -190,7 +147,7 @@ class _CallScreenState extends State<CallScreen> {
     );
   }
 
-  Widget _localView() {
+  Widget _view() {
     return rtc_local_view.SurfaceView();
   }
 }

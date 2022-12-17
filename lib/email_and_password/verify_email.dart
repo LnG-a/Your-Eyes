@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:your_eyes/blind_pages/main_page.dart';
 import 'package:your_eyes/email_and_password/login_page.dart';
 import 'package:your_eyes/resources/auth_method.dart';
-import 'package:your_eyes/voluntary_pages/main_page.dart';
 
 import '../design_system.dart';
 
@@ -127,15 +126,15 @@ class VerifyScreenState extends State<VerifyScreen> {
       timer.cancel();
 
       // ignore: use_build_context_synchronously
-      // Navigator.push(
-      //     context, MaterialPageRoute(builder: (context) => const MainPage()));
-      if (widget.isBlind) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const MainPage()));
-      } else {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const MainPageVolunteer()));
-      }
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const MainPage()));
+      // if (widget.isBlind) {
+      //   Navigator.push(
+      //       context, MaterialPageRoute(builder: (context) => const MainPage()));
+      // } else {
+      //   Navigator.push(context,
+      //       MaterialPageRoute(builder: (context) => const MainPageVolunteer()));
+      // }
     }
   }
 }

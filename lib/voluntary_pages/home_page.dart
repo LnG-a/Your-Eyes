@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:your_eyes/voluntary_pages/calll_page.dart';
+import 'package:your_eyes/main.dart';
+import 'package:your_eyes/screens/callscreens/call_screens.dart';
+
+import '../models/call.dart';
 
 class HomePageVolunteer extends StatefulWidget {
   const HomePageVolunteer({Key? key}) : super(key: key);
@@ -130,7 +133,13 @@ class _HomePageVolunteerState extends State<HomePageVolunteer> {
               child: TextButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => VoluntaryCallPage()));
+                        builder: (context) => CallScreen(
+                                call: Call(
+                              "lqtGaFILsOYzm1KkRq4lvp3akp52",
+                              "oogxsr3xWcZsFdB1xbgjMXua25i2",
+                              channelId,
+                              false,
+                            ))));
                   },
                   style: ButtonStyle(
                     backgroundColor:
