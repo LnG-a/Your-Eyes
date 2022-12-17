@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../design_system.dart';
@@ -33,7 +34,9 @@ class _HomePageState extends State<HomePage> {
                       2000,
                     ),
                     shape: shape),
-                onLongPress: () async {},
+                onLongPress: () async {
+                  await FlutterPhoneDirectCaller.callNumber("+84988445995");
+                },
                 onPressed: () async {
                   await [Permission.microphone, Permission.camera].request();
                   CallUtils.dial(

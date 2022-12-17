@@ -12,8 +12,6 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  String email = "";
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,14 +25,6 @@ class _SettingsPageState extends State<SettingsPage> {
           const TitleSession(
             title: 'Hồ sơ cá nhân',
           ),
-          ButtonElement(text: email, onPressed: () {}),
-          ButtonElement(
-              text: "Thông tin cá nhân",
-              onPressed: () {
-                setState(() {
-                  email = AuthMethods.currentAppUser.email;
-                });
-              }),
           ButtonElement(text: "Đổi mật khẩu", onPressed: () {}),
           ButtonElement(text: "Thay đổi email", onPressed: () {}),
           ButtonElement(text: "Thông báo", onPressed: () {}),
@@ -63,13 +53,82 @@ class _SettingsPageState extends State<SettingsPage> {
           const SizedBox(
             height: 20,
           ),
-          buildButton("Đăng xuất", large, colorType1, () {
-            Navigator.of(context).popUntil((route) => route.isFirst);
 
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => const StartedPage()));
-            AuthMethods.userLogout();
-          }),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: mainColor,
+              minimumSize: const Size(380, 55),
+              shape: shape,
+            ),
+            // onPressed: () {
+            //   Navigator.of(context).popUntil((route) => route.isFirst);
+            //
+            //   Navigator.of(context).pushReplacement(
+            //       MaterialPageRoute(builder: (context) => const StartedPage()));
+            //   AuthMethods.userLogout();
+            // },
+            child: const Text(
+              "Đăng xuất",
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            onPressed: () {
+              showModalBottomSheet(
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(25),
+                        topRight: Radius.circular(25)),
+                  ),
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Container(
+                        padding: const EdgeInsets.only(
+                          top: 30,
+                          bottom: 30,
+                        ),
+                        height: 250,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            const Text(
+                              "Đăng xuất",
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "Bạn có chắc muốn đăng xuất?",
+                              style: TextStyle(
+                                  fontSize: 16, color: Colors.grey.shade500),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                buildButton("No", half, colorType2, () {
+                                  Navigator.pop(context);
+                                }),
+                                buildButton("Yes", half, colorType1, () {
+                                  Navigator.of(context)
+                                      .popUntil((route) => route.isFirst);
+
+                                  Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const StartedPage()));
+                                  AuthMethods.userLogout();
+                                })
+                              ],
+                            )
+                          ],
+                        ));
+                  });
+            },
+          )
           // ElevatedButton(
           //   onPressed: () {
           //     // final provider =

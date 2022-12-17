@@ -11,7 +11,7 @@ import 'design_system.dart';
 
 const appId = "00c69fdbfc64436b9786ed1a9a24d67b";
 const token =
-    "007eJxTYLh8knXvpb43XVNyNZheFD+ZdKvu++U76YcjmXpONbtNMtilwGBgkGxmmZaSlJZsZmJibJZkaW5hlppimGiZaGSSYmaedKJwTnJDICODR/1tFkYGCATx2RmSMxLz8lJzGBgAuX4j8Q==";
+    "007eJxTYNBeLFS8LnWDXA+/Wofab95jl+p/uWvtOODQva9/VopBSLECg4FBspllWkpSWrKZiYmxWZKluYVZaophomWikUmKmXnStLtzkxsCGRl4VO8xMEIhiM/OkJyRmJeXmsPAAABmzR/5";
 const channelId = "channel";
 
 Future main() async {

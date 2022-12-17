@@ -3,7 +3,7 @@ import 'package:your_eyes/resources/auth_method.dart';
 import 'package:your_eyes/screens/callscreens/pickup/pickup_layout.dart';
 
 import '../voluntary_pages/home_page.dart';
-import 'audio_book_page.dart';
+import 'audiobook/audio_book_page.dart';
 import 'home_page.dart';
 import 'settings_page.dart';
 
@@ -19,11 +19,6 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
-    // SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-    //   userProvider = Provider.of<UserProvider>(context, listen: false);
-    //   userProvider.refreshUser();
-    // });
   }
 
   int currentIndex = 1;
@@ -44,7 +39,7 @@ class _MainPageState extends State<MainPage> {
 
   final bottomNavigationBarItems = [
     const BottomNavigationBarItem(
-      icon: Icon(Icons.favorite, size: 30),
+      icon: Icon(Icons.book, size: 30),
       label: "Sách nói",
     ),
     const BottomNavigationBarItem(
