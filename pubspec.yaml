@@ -61,6 +61,8 @@ dependencies:
   #phone_call
   flutter_phone_direct_caller: ^2.1.1
 
+  #text_to_speech
+  flutter_tts: ^3.6.2
 
 dev_dependencies:
   flutter_test:

@@ -6,6 +6,7 @@ import '../design_system.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
+  final String title = "Sách nói";
 
   @override
   State<SettingsPage> createState() => _SettingsPageState();
@@ -25,8 +26,16 @@ class _SettingsPageState extends State<SettingsPage> {
           const TitleSession(
             title: 'Hồ sơ cá nhân',
           ),
-          ButtonElement(text: "Đổi mật khẩu", onPressed: () {}),
-          ButtonElement(text: "Thay đổi email", onPressed: () {}),
+          ButtonElement(
+              text: "Đổi mật khẩu",
+              onPressed: () {
+                print(AuthMethods.currentAppUser.email);
+              }),
+          ButtonElement(
+              text: "Thay đổi email",
+              onPressed: () {
+                print(AuthMethods.currentAppUser.isBlind);
+              }),
           ButtonElement(text: "Thông báo", onPressed: () {}),
           ButtonElement(text: "Thông báo qua email", onPressed: () {}),
           const SizedBox(

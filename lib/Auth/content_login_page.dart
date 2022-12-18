@@ -21,7 +21,6 @@ class ContentLoginPage extends StatelessWidget {
             const SizedBox(height: 20),
             Expanded(
               child: Container(
-                height: 200,
                 width: 350,
                 decoration: BoxDecoration(
                   border: Border.all(
@@ -30,14 +29,14 @@ class ContentLoginPage extends StatelessWidget {
                   ),
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: const Center(
-                  child: Text(
-                    "By continuing, I confirm I am at\n"
-                    " least 17 years old and i agree to\n"
-                    " accept the Your Eyes Term &\n"
-                    " Privacy Policy.",
-                    textAlign: TextAlign.left,
-                    style: TextStyle(fontSize: 20),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: const Center(
+                    child: Text(
+                      "By continuing, I confirm I am atleast 17 years old and i agree to\ccept the Your Eyes Term &Privacy Policy.",
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(fontSize: 20),
+                    ),
                   ),
                 ),
               ),

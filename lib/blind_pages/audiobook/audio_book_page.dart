@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:your_eyes/blind_pages/audiobook/book_model.dart';
 
 class AudioBookPage extends StatefulWidget {
+  final String title = "Sách nói";
   const AudioBookPage({Key? key}) : super(key: key);
 
   @override
@@ -10,18 +11,13 @@ class AudioBookPage extends StatefulWidget {
 }
 
 class _AudioBookPageState extends State<AudioBookPage> {
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Center(
-  //     child: Text("test"),
-  //   );
-  // }
-
   AudioPlayer audioPlayer = AudioPlayer();
   bool isPlaying = false;
   Duration duration = Duration.zero;
   Duration position = Duration.zero;
-  late Book book;
+  int count = 0;
+  Book book = Book.books[0];
+  final player = AudioCache(prefix: 'assets/audio/');
 
   @override
   void initState() {
@@ -63,8 +59,7 @@ class _AudioBookPageState extends State<AudioBookPage> {
     // audioPlayer.setReleaseMode(ReleaseMode.LOOP);
 
     // Load audio
-    final player = AudioCache(prefix: 'assets/audio/');
-    final url = await player.load('hat_giong_yeu_thuong2.MP3');
+    final url = await player.load(book.url);
     audioPlayer.setUrl(url.path, isLocal: true);
   }
 
@@ -83,7 +78,7 @@ class _AudioBookPageState extends State<AudioBookPage> {
             child: GestureDetector(
               child: ClipRect(
                 child: Image.asset(
-                  "assets/images/cover1.jpg",
+                  book.cover,
                   fit: BoxFit.contain,
                 ),
               ),
@@ -94,23 +89,39 @@ class _AudioBookPageState extends State<AudioBookPage> {
                   await audioPlayer.resume();
                 }
               },
+              onLongPress: () {
+                if (count == 5) return;
+                count++;
+                setState(() async {
+                  book = Book.books[count];
+                  await setAudio();
+                });
+              },
+              onDoubleTap: () {
+                if (count == 0) return;
+                count--;
+                setState(() async {
+                  book = Book.books[count];
+                  await setAudio();
+                });
+              },
             ),
           ),
           SizedBox(
             height: 15,
           ),
-          const Text(
-            "Hạt giống yêu thương - tập 1",
+          Text(
+            book.title,
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 20,
               fontWeight: FontWeight.w500,
             ),
           ),
           const SizedBox(height: 4),
-          const Text(
-            "Robert Fulghum",
+          Text(
+            book.author,
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 16,
             ),
           ),
           Slider(
@@ -141,7 +152,14 @@ class _AudioBookPageState extends State<AudioBookPage> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (count == 0) return;
+                  count--;
+                  setState(() async {
+                    book = Book.books[count];
+                    await setAudio();
+                  });
+                },
                 icon: const Icon(
                   Icons.skip_previous,
                 ),
@@ -167,7 +185,14 @@ class _AudioBookPageState extends State<AudioBookPage> {
                 ),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (count == 5) return;
+                  count++;
+                  setState(() async {
+                    book = Book.books[count];
+                    await setAudio();
+                  });
+                },
                 icon: const Icon(
                   Icons.skip_next,
                 ),

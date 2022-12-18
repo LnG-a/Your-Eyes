@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:your_eyes/resources/auth_method.dart';
 import 'package:your_eyes/screens/callscreens/pickup/pickup_layout.dart';
 
@@ -15,26 +16,33 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  FlutterTts flutterTts = FlutterTts();
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    initVoice();
   }
 
   int currentIndex = 1;
-
   PageController pageController = PageController(initialPage: 1);
 
   final blindScreens = [
-    AudioBookPage(),
-    HomePage(),
-    SettingsPage(),
+    const AudioBookPage(),
+    const HomePage(),
+    const SettingsPage(),
   ];
 
   final volunteerScreens = [
-    AudioBookPage(),
-    HomePageVolunteer(),
-    SettingsPage(),
+    const AudioBookPage(),
+    const HomePageVolunteer(),
+    const SettingsPage(),
+  ];
+  final title = [
+    "Bạn đang ở trang sách nói",
+    "Bạn đang ở trang chủ",
+    "Bạn đang ở trang cài đặt"
   ];
 
   final bottomNavigationBarItems = [
@@ -55,14 +63,27 @@ class _MainPageState extends State<MainPage> {
     )
   ];
 
+  Future<void> initVoice() async {
+    await flutterTts.setPitch(1);
+    await flutterTts.setLanguage("vi");
+    await flutterTts.speak("Bạn đang ở trang chủ");
+  }
+
+  speak(String text) async {
+    await flutterTts.speak(text);
+  }
+
   @override
   Widget build(BuildContext context) {
     return PickupLayout(
       child: Scaffold(
         body: PageView(
           controller: pageController,
-          onPageChanged: (newIndex) => {
-            setState(() => {currentIndex = newIndex})
+          onPageChanged: (newIndex) {
+            setState(() => {
+                  currentIndex = newIndex,
+                });
+            speak(title[currentIndex]);
           },
           children: AuthMethods.currentAppUser.isBlind
               ? blindScreens

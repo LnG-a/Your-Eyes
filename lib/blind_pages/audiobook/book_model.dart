@@ -12,33 +12,33 @@ class Book {
 
   static final books = [
     Book(
-      title: "Hạt giống yêu thương - tập 1",
+      title: "Gieo hạt giống yêu thương - Tập 1",
       author: "Robert Fulghum",
-      url: 'assets/audio/hat_giong_yeu_thuong2.MP3',
+      url: 'hat_giong_yeu_thuong2.MP3',
       cover: 'assets/images/cover1.jpg',
     ),
     Book(
-      title: "Hạt giống yêu thương - tập 2",
+      title: "Gieo hạt giống yêu thương - Tập 2",
       author: "Robert Fulghum",
-      url: 'assets/audio/hat_giong_yeu_thuong3.MP3',
+      url: 'hat_giong_yeu_thuong3.MP3',
       cover: 'assets/images/cover2.jpg',
     ),
     Book(
-      title: "Hạt giống yêu thương - tập 3",
+      title: "Gieo hạt giống yêu thương - Tập 3",
       author: "Robert Fulghum",
-      url: 'assets/audio/hat_giong_yeu_thuong4.MP3',
+      url: 'hat_giong_yeu_thuong4.MP3',
       cover: 'assets/images/cover3.jpg',
     ),
     Book(
-      title: "Hạt giống yêu thương - tập 4",
+      title: "Gieo hạt giống yêu thương - Tập 4",
       author: "Robert Fulghum",
-      url: 'assets/audio/hat_giong_yeu_thuong5.MP3',
+      url: 'hat_giong_yeu_thuong5.MP3',
       cover: 'assets/images/cover1.jpg',
     ),
     Book(
-      title: "Hạt giống yêu thương - tập 5",
+      title: "Gieo hạt giống yêu thương - Tập 5",
       author: "Robert Fulghum",
-      url: 'assets/audio/hat_giong_yeu_thuong6.MP3',
+      url: 'hat_giong_yeu_thuong6.MP3',
       cover: 'assets/images/cover2.jpg',
     ),
   ];

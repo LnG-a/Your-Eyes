@@ -7,6 +7,7 @@ import '../utils/call_ultilities.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+  final String title = "Sách nói";
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -35,7 +36,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     shape: shape),
                 onLongPress: () async {
-                  await FlutterPhoneDirectCaller.callNumber("+84988445995");
+                  await FlutterPhoneDirectCaller.callNumber("+84123456789");
                 },
                 onPressed: () async {
                   await [Permission.microphone, Permission.camera].request();

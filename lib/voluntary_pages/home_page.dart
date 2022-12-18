@@ -9,11 +9,13 @@ class HomePageVolunteer extends StatefulWidget {
 }
 
 class _HomePageVolunteerState extends State<HomePageVolunteer> {
+  final String title = "Sách nói";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home Page"),
+        title: const Text("Trang chủ"),
         automaticallyImplyLeading: false,
       ),
       body: Center(
