@@ -51,4 +51,6 @@ The 2 default accounts are:
 
 - Password: 123456
 
-***Note: although you can sign up and do stuff with accounts, the app now works only for these 2 accounts***
+***Note 1: Although you can sign up and do stuff with accounts, the app now works only for these 2 accounts***
+
+***Note 2: This application calls are based on an [Agora](https://www.agora.io/en/) and its temporary token, if that's expired, you must [create a new one](https://docs.agora.io/en/voice-calling/reference/manage-agora-account?platform=flutter)***
