@@ -1,25 +1,46 @@
 # Your Eyes
-A new Flutter project.
+This project is an asignment of Human-Computer Interaction class.
 
-## Getting Started
+<img src="https://user-images.githubusercontent.com/72114667/208336931-f63d5fce-7a5f-4867-88ca-095deb830d07.png" height="100">
 
-This project is a starting point for a Flutter application.
+## Step 1: Install and setup
+You should follow instructions [here](https://docs.flutter.dev/get-started/install) from the official Flutter website. 
 
-A few resources to get you started if this is your first Flutter project:
+To check flutter version and dart version run these
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+`flutter --version`
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+`dart --version`
 
-# How to run this application
-## Step 1: Install Flutter 
-## Step 2: Install Android Studio
-## Step 3: Clone code
-## Step 4: Run app
+After this step, your computer should have flutter, dart, code editor ([Android Studio](https://developer.android.com/studio) is recommended) and Android device connected.
+
+***Note: our setting flutter version is 3.3.2 and dart version is 2.18.1***
+
+## Step 2: Clone code
+After clone code, run
+
+`flutter pub get`
+
+This command should install all packages needed for the app
+
+After this setup, you shuold have this code structure in your Android Studio (or other editor)
+
+![image](https://user-images.githubusercontent.com/72114667/208336218-f1a3e94e-7309-4ebf-9bea-11030ff762db.png)
+
+
+## Step 3: Run app
+Before running the app, make sure that your computer is connecting to a mobile device.
+
+To run this app, click run button which located in the top right corner
+
+![image](https://user-images.githubusercontent.com/72114667/208336498-b26e3671-2d69-452e-b9b8-3428b9adad69.png)
+
+Or you can run by cmd, using this command
+
+`flutter run`
+
 This app requires 2 devices: a blind and a volunteer.
+
 The 2 default accounts are: 
 
 - Account: blind@gmail.com
@@ -30,4 +51,4 @@ The 2 default accounts are:
 
 - Password: 123456
 
-Note that although you can sign up and do stuff with accounts, the app now works only for these 2 accounts
+***Note: although you can sign up and do stuff with accounts, the app now works only for these 2 accounts***
